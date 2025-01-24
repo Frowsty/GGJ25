@@ -1,16 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IPlayerComponent
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Vector2 direction = Vector2.zero;
+
+    public void UpdateComponent()
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnMove(InputValue value)
     {
-        
+        direction = value.Get<Vector2>();
     }
 }
