@@ -1,16 +1,26 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IPlayerComponent
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Vector2 direction = Vector2.zero;
+
+    private Rigidbody2D rb2d;
+    private float speed = 10f;
+
+    private void Start()
     {
-        
+        if (rb2d == null)
+            rb2d = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateComponent()
     {
-        
+        rb2d.linearVelocity = direction * speed;
+    }
+
+    private void OnMove(InputValue value)
+    {
+        direction = value.Get<Vector2>();
     }
 }

@@ -11,6 +11,9 @@ public class PlayingState : State
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             GameManager.Instance.SwitchState<PauseState>();
+        
+        // call update loops
+        Player.Instance.UpdatePlayer();
     }
     public override void FixedUpdateState() {}
 

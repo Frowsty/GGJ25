@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public State[] states;
     public State currentState;
-    
+
+    private Player Player { get; set; }
+
     public void SwitchState<T>() where T : State
     {
         foreach (State s in states)
