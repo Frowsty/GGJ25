@@ -1,20 +1,33 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
 
- public void StartButton() 
+    public GameObject SettingsUI;
+
+
+    public void StartButton()
     {
         SceneManager.LoadScene(1);
     }
 
-public void QuitButton()
+
+    public void EnableSettingsUI()
     {
+        SettingsUI.SetActive(true);
+    }
 
-        Application.Quit(); 
+    public void DisableSettingsUI()
+    {
+        SettingsUI.SetActive(false);
+    }
 
+
+
+    public void QuitButton()
+    {
+        Application.Quit();
     }
 
 }
