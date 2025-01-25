@@ -5,6 +5,7 @@ public class Menu : MonoBehaviour
 {
 
     public GameObject SettingsUI;
+    public GameObject StartMenuUI;
 
 
     public void StartButton()
@@ -16,11 +17,15 @@ public class Menu : MonoBehaviour
     public void EnableSettingsUI()
     {
         SettingsUI.SetActive(true);
+        
+        StartMenuUI.SetActive(false);
     }
 
     public void DisableSettingsUI()
     {
         SettingsUI.SetActive(false);
+
+        StartMenuUI.SetActive(true );
     }
 
 
