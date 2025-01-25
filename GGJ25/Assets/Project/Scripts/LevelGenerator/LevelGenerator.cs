@@ -10,6 +10,7 @@ public class LevelGenerator : MonoBehaviour
     public static LevelGenerator instance;
     public int maxRooms;
     public List<GameObject> possibleRooms;
+    public GameObject teleportPrefab;
     
     
     public List<Room> rooms = new();
@@ -47,9 +48,10 @@ public class LevelGenerator : MonoBehaviour
                 _lastRoom = room.GetComponent<Room>();
             }
             Transform roomTransform = _lastRoom.GetRandomDirection();
-            roomTransform.position = _lastRoom.transform.position+roomTransform.localPosition*2;
+            Vector3 pos = new Vector3(_lastRoom.gameObject.transform.position.x, _lastRoom.gameObject.transform.position.y, _lastRoom.gameObject.transform.position.z);
+            pos+=roomTransform.localPosition*2;
             
-            room = Instantiate(possibleRooms[Random.Range(0, possibleRooms.Count)], roomTransform.position, Quaternion.identity);
+            room = Instantiate(possibleRooms[Random.Range(0, possibleRooms.Count)], pos, Quaternion.identity);
             rooms.Add(room.GetComponent<Room>());
             _lastRoom = room.GetComponent<Room>();
 
@@ -63,6 +65,17 @@ public class LevelGenerator : MonoBehaviour
         
         rooms.Clear();
     }
-    
+
+    public void GenerateTeleport()
+    {
+        foreach (Room room in rooms)
+        {
+            foreach (var neighbour in room.GetNeighbours())
+            {
+                
+                var teleporter = Instantiate(teleportPrefab, neighbour.transform.position, Quaternion.identity);
+            }
+        }
+    }
     
 }

@@ -11,10 +11,12 @@ GameObject:
   - component: {fileID: 3699739568367574845}
   - component: {fileID: 7648487737573661828}
   - component: {fileID: 1785008992288717930}
+  - component: {fileID: 684401978477632769}
   - component: {fileID: 2516344635857585632}
   - component: {fileID: 6291071609794060381}
   - component: {fileID: 1954634599764058797}
   - component: {fileID: 4646560795373104006}
+  - component: {fileID: 529406603653062590}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -61,6 +63,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b64f5b7340bf0f4390258701da48946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &684401978477632769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6442299021490466247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b72c4a7845dded841b6d9a899e3125fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+  MaxHealth: 100
+  MovementSpeed: 10
+  Damage: 10
+  chargeRate: 5
+  chargeFireRate: 1
+  chargeTime: 0.5
+  fireRate: 10
+  piercingRate: 0.9
 --- !u!114 &2516344635857585632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +154,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &4646560795373104006
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -176,7 +199,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 1383734970849922731, guid: fa65afc6d8714934c838748d5a8fa618, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -187,3 +210,40 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &529406603653062590
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6442299021490466247}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.9375, y: 2}
+  m_Direction: 0
