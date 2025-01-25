@@ -352,6 +352,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Merchant
       objectReference: {fileID: 0}
+    - target: {fileID: 7270969307211585300, guid: 3d94c3d70a5702440ad1719f0d1a8696, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7820319159801509812, guid: 3d94c3d70a5702440ad1719f0d1a8696, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.765966

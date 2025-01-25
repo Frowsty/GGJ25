@@ -28,7 +28,9 @@ public class PlayerStats : StatBase, IPlayerComponent
     
     public void UpdateComponent()
     {
-        
+        if (GetHealth() <= 0)
+            GameManager.Instance.SwitchState<PauseState>();
+        // switch to death screen
     }
 
     public float GetChargeRate() => chargeRate;
