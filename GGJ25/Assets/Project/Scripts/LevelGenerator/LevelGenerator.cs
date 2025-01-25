@@ -32,6 +32,7 @@ public class LevelGenerator : MonoBehaviour
             if(rooms.Count!=0)
                 ClearDungeon();
             GenerateRooms();
+            GenerateTeleport();
         }
     }
 
@@ -48,6 +49,14 @@ public class LevelGenerator : MonoBehaviour
                 _lastRoom = room.GetComponent<Room>();
             }
             Transform roomTransform = _lastRoom.GetRandomDirection();
+            print(roomTransform);
+            while (roomTransform == null)
+            {
+                _lastRoom=rooms[Random.Range(0, rooms.Count)];
+                roomTransform = _lastRoom.GetRandomDirection();
+            }
+            
+            
             Vector3 pos = new Vector3(_lastRoom.gameObject.transform.position.x, _lastRoom.gameObject.transform.position.y, _lastRoom.gameObject.transform.position.z);
             pos+=roomTransform.localPosition*2;
             
@@ -69,13 +78,11 @@ public class LevelGenerator : MonoBehaviour
     public void GenerateTeleport()
     {
         foreach (Room room in rooms)
-        {
             foreach (var neighbour in room.GetNeighbours())
             {
-                
                 var teleporter = Instantiate(teleportPrefab, neighbour.transform.position, Quaternion.identity);
             }
-        }
+        
     }
     
 }

@@ -15,7 +15,6 @@ public class Room : MonoBehaviour
         foreach (var dir in directions)
         {
             Collider2D[] roomCollider = Physics2D.OverlapCircleAll(dir.position, 1f);
-            print(roomCollider.Length);
             foreach (var c in roomCollider)
             {
                 if(c == roomCollider2D)
@@ -29,6 +28,8 @@ public class Room : MonoBehaviour
     public Transform GetRandomDirection()
     {
         List<Transform> possibleDirections = GetPossibleDirections();
+        if(possibleDirections.Count == 0)
+            return null;
         return possibleDirections[Random.Range(0, possibleDirections.Count)];
     }
 
@@ -38,7 +39,6 @@ public class Room : MonoBehaviour
         foreach (var dir in directions)
         {
             Collider2D[] roomCollider = Physics2D.OverlapCircleAll(dir.position, 1f);
-            print(roomCollider.Length);
             foreach (var c in roomCollider)
             {
                 if(c == roomCollider2D)
