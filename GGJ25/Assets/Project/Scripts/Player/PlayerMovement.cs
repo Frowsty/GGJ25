@@ -66,4 +66,6 @@ public class PlayerMovement : MonoBehaviour, IPlayerComponent
     {
         direction = value.Get<Vector2>();
     }
+
+
 }

@@ -15,7 +15,9 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
     private float chargeTimer = 0f;
     private float lastCharge = 0f;
     private float lastAttack = 0f;
-
+    
+    private Vector2 mousePosition;
+    
     public void UpdateComponent()
     {
         for (int i = bubbles.Count - 1; i >= 0; i--)
@@ -34,7 +36,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
             {
                 var bubble = Instantiate(bubblePrefab, transform.position, Quaternion.identity);
                 bubble.damage = PlayerStats.Instance.GetDamage();
-                bubble.direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+                bubble.direction = (Camera.main.ScreenToWorldPoint(mousePosition) - transform.position).normalized;
                 bubble.spawnTime = Time.time;
                 bubbles.Add(bubble);
 
@@ -66,7 +68,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
                     chargeBubble.bubbleCollider.enabled = true;
                     chargeBubble.damage = Mathf.RoundToInt(chargeBubble.transform.localScale.x * PlayerStats.Instance.GetDamage());
                     chargeBubble.spawnTime = Time.time;
-                    chargeBubble.direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+                    chargeBubble.direction = (Camera.main.ScreenToWorldPoint(mousePosition) - transform.position).normalized;
                     bubbles.Add(chargeBubble);
                     chargeBubble = null;
                     charge = false;
@@ -84,7 +86,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
                 chargeBubble.bubbleCollider.enabled = true;
                 chargeBubble.damage = Mathf.RoundToInt(chargeBubble.transform.localScale.x * PlayerStats.Instance.GetDamage());
                 chargeBubble.spawnTime = Time.time;
-                chargeBubble.direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+                chargeBubble.direction = (Camera.main.ScreenToWorldPoint(mousePosition) - transform.position).normalized;
                 bubbles.Add(chargeBubble);
                 chargeBubble = null;
                 lastCharge = Time.time;
@@ -93,5 +95,11 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
 
             chargeTimer = 0f;
         }
+    }
+
+    public void OnLook(InputValue value)
+    {
+        mousePosition = value.Get<Vector2>();
+        print(mousePosition);
     }
 }
