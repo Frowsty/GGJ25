@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 8040396173813324222}
   - component: {fileID: 3294299484175105565}
   - component: {fileID: 6507131326892079808}
+  - component: {fileID: 1241684715163637128}
   m_Layer: 0
   m_Name: EndPoint
   m_TagString: Teleport
@@ -249,3 +250,16 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.24242425
+--- !u!114 &1241684715163637128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8419828057079510630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27078f9cdbfe22a4f9a2dfc5eeb1774c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bg: {fileID: 0}

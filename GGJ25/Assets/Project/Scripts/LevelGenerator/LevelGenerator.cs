@@ -44,6 +44,7 @@ public class LevelGenerator : MonoBehaviour
             ClearDungeon();
         GenerateRooms();
         GenerateTeleport();
+        SpawnEndRoom(GetFurthestRoom());
         InitializeDungeon();
     }
 
@@ -124,7 +125,7 @@ public class LevelGenerator : MonoBehaviour
             foreach (var neighbour in room.GetNeighboursPositions())
             {
                 bool foundTeleport = false;
-                Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(neighbour.Value.position, 1.5f);
+                Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(neighbour.Value.position, 1f);
                 foreach (var collider in collider2Ds)
                 {
                     if (collider.CompareTag("Teleport"))
@@ -172,6 +173,79 @@ public class LevelGenerator : MonoBehaviour
         {
             rooms[i].GetComponent<Room>().DeactivateRoom();
         }
+    }
+
+
+    public Room GetFurthestRoom()
+    {
+        Room furthestRoom = rooms[0];
+        foreach (var room in rooms)
+        {
+            if (Vector3.Distance(Player.Instance.transform.position, room.transform.position)
+                > Vector3.Distance(Player.Instance.transform.position, furthestRoom.transform.position))
+            {
+                furthestRoom = room;
+            }
+        }
+
+        return furthestRoom;
+    }
+
+
+    public void SpawnEndRoom(Room furthestRoom)
+    {
+    
+        Transform roomTransform = furthestRoom.GetRandomDirection();
+        
+        Vector3 pos = new Vector3();
+        
+        switch (roomTransform.name)
+        {
+            case "Top":
+                pos.y = _lastRoom.transform.position.y+20;
+                pos.x = _lastRoom.transform.position.x;
+                break;
+            case "Bottom":
+                pos.y = _lastRoom.transform.position.y-20;
+                pos.x = _lastRoom.transform.position.x;
+                break;
+            case "TopLeft":
+                pos.x = _lastRoom.transform.position.x-30;
+                pos.y = _lastRoom.transform.position.y+10;
+                break;
+            case "TopRight":
+                pos.x = _lastRoom.transform.position.x+30;
+                pos.y = _lastRoom.transform.position.y+10;
+                break;
+            case "BottomLeft":
+                pos.x = _lastRoom.transform.position.x-30;
+                pos.y = _lastRoom.transform.position.y-10;
+                break;
+            case "BottomRight":
+                pos.x = _lastRoom.transform.position.x+30;
+                pos.y = _lastRoom.transform.position.y-10;
+                break;
+        }
+            
+            
+        var room = Instantiate(endPointRoom, pos, Quaternion.identity);
+        rooms.Add(room.GetComponent<Room>());
+        _lastRoom = room.GetComponent<Room>();
+        GenerateTeleport();
+        _lastRoom.DeactivateRoom();
+    }
+
+    public void ResetAndIncrease()
+    {
+        ClearDungeon();
+        maxRoomsMin = maxRoomsMax;
+        maxRoomsMax += 3;
+        GenerateRooms();
+        GenerateTeleport();
+        SpawnEndRoom(GetFurthestRoom());
+        Player.Instance.transform.position = Vector3.zero;
+        Camera.main.transform.position=Vector3.zero;
+        InitializeDungeon();
     }
     
 }

@@ -58,7 +58,7 @@ public class Teleporter : MonoBehaviour
 
             LevelGenerator.Instance.AdjustTeleport();
             
-            if (nextRoom != null && !nextRoom.hasSpawned)
+            if (nextRoom != null && !nextRoom.hasSpawned && !nextRoom.gameObject.CompareTag("End"))
             {
                 foreach (var point in nextRoom.GetComponentsInChildren<SpawnPoint>())
                     EnemySpawner.Instance.SpawnEnemy(point.transform.position);

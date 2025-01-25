@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Teleport
   - Enemy
+  - End
+  - BackGround
   layers:
   - Default
   - TransparentFX
