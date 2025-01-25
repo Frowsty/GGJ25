@@ -33,9 +33,9 @@ public class Room : MonoBehaviour
         return possibleDirections[Random.Range(0, possibleDirections.Count)];
     }
 
-    public List<Transform> GetNeighbours()
+    public Dictionary<GameObject,Transform> GetNeighboursPositions()
     {
-        List<Transform> neighbours = new();
+        Dictionary<GameObject,Transform> neighbours = new();
         foreach (var dir in directions)
         {
             Collider2D[] roomCollider = Physics2D.OverlapCircleAll(dir.position, 1f);
@@ -43,7 +43,8 @@ public class Room : MonoBehaviour
             {
                 if(c == roomCollider2D)
                     continue;
-                neighbours.Add(dir);
+                neighbours.Add(c.gameObject, dir);
+                
             }
         }
         return neighbours;

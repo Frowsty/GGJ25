@@ -49,7 +49,6 @@ public class LevelGenerator : MonoBehaviour
                 _lastRoom = room.GetComponent<Room>();
             }
             Transform roomTransform = _lastRoom.GetRandomDirection();
-            print(roomTransform);
             while (roomTransform == null)
             {
                 _lastRoom=rooms[Random.Range(0, rooms.Count)];
@@ -78,9 +77,11 @@ public class LevelGenerator : MonoBehaviour
     public void GenerateTeleport()
     {
         foreach (Room room in rooms)
-            foreach (var neighbour in room.GetNeighbours())
+            foreach (var neighbour in room.GetNeighboursPositions())
             {
-                var teleporter = Instantiate(teleportPrefab, neighbour.transform.position, Quaternion.identity);
+                var teleporter = Instantiate(teleportPrefab, neighbour.Value.position, Quaternion.identity);
+                teleporter.GetComponent<Teleporter>().origin = room;
+                teleporter.GetComponent<Teleporter>().destination = neighbour.Key.GetComponentInParent<Room>();
             }
         
     }
