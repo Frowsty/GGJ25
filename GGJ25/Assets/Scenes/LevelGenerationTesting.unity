@@ -246,8 +246,12 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 684401978477632769, guid: ef6157decc74e8b4f882cd8445f0d0fd, type: 3}
+      propertyPath: Health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 684401978477632769, guid: ef6157decc74e8b4f882cd8445f0d0fd, type: 3}
       propertyPath: fireRate
-      value: 0.001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3699739568367574845, guid: ef6157decc74e8b4f882cd8445f0d0fd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -675,6 +679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 8960109811860852794, guid: af6baacc594be25429856853cbe30d46, type: 3}
+  shellPrefab: {fileID: 6574944562336741299, guid: 46148c4885abcd54499725ea5e068006, type: 3}
   OnRoomClear:
     m_PersistentCalls:
       m_Calls: []

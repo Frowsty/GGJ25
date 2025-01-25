@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BubbleMovement : MonoBehaviour
 {
@@ -10,7 +12,13 @@ public class BubbleMovement : MonoBehaviour
     public bool shouldDestroy = false;
     public Vector3 direction;
     public float damage;
-    
+    public AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource.Play();
+    }
+
     public void UpdateBubble()
     {
         transform.position +=  bubbleSpeed * Time.deltaTime * direction;
