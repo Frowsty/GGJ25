@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerComponent
 
     public void SetAnimationStates()
     {
+       
         if (direction.x > 0 && (direction.y >= 0 || direction.y <= 0))
         {
             animator.SetBool("WalkingRight", true);
@@ -52,7 +53,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerComponent
             animator.SetBool("WalkingLeft", false);
             animator.SetBool("WalkingRight", false);
         }
-        else
+        else if (direction.magnitude < 0.1f)
         {
             animator.SetBool("WalkingBack", false);
             animator.SetBool("WalkingFront", false);

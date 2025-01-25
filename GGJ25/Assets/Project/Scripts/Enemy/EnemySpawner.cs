@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -8,7 +9,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private Enemy enemyPrefab;
     
-    List<Enemy> enemies = new();
+    public UnityEvent OnRoomClear;
+    
+    
+    public List<Enemy> enemies = new();
 
     private void Awake()
     {
@@ -30,6 +34,8 @@ public class EnemySpawner : MonoBehaviour
                 enemies.RemoveAt(i);
             }
         }
+        if(enemies.Count == 0)
+            OnRoomClear.Invoke();
     }
     
     // pass the spawners position here and spawn the enemy

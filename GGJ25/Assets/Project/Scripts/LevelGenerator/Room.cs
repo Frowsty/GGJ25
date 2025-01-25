@@ -10,7 +10,7 @@ public class Room : MonoBehaviour
     public Collider2D roomCollider2D;
 
     public bool hasSpawned = false;
-    
+    public bool isActive = false;
     
     public List<Transform> GetPossibleDirections()
     {
@@ -56,22 +56,24 @@ public class Room : MonoBehaviour
 
     public void DeactivateRoom()
     {
-       /* 
-        //roomCollider2D.enabled = false;
+       isActive = false;
+        roomCollider2D.enabled = false;
 
         List<SpriteRenderer> roomSpriteRenderers = new (GetComponentsInChildren<SpriteRenderer>());
 
         foreach (var renderer in roomSpriteRenderers)
         {
             renderer.enabled = false;
+            if(renderer.gameObject.CompareTag("Teleport"))
+                renderer.enabled = true;
         }
-        */
+        
     }
 
     public void ActivateRoom()
     {
-        /*
-        //roomCollider2D.enabled = true;
+        isActive = true;
+        roomCollider2D.enabled = true;
 
         List<SpriteRenderer> roomSpriteRenderers = new (GetComponentsInChildren<SpriteRenderer>());
 
@@ -79,6 +81,6 @@ public class Room : MonoBehaviour
         {
             renderer.enabled = true;
         }
-        */
+        
     }
 }

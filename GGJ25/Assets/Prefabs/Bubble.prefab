@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93334748a8008664b8605a418ff69758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bubbleCollider: {fileID: 0}
   spawnTime: 0
   shouldDestroy: 0
   direction: {x: 0, y: 0, z: 0}
