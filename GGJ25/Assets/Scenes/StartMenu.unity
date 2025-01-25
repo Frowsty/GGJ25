@@ -1388,7 +1388,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1396563602
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1572,6 +1572,12 @@ PrefabInstance:
     - target: {fileID: 4443579125960295064, guid: d7e41e4b8c6ad764680e7eec95a98d4e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7257524874615249257, guid: d7e41e4b8c6ad764680e7eec95a98d4e, type: 3}
+      propertyPath: m_text
+      value: 'Bubble Blender
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 8130698130847577975, guid: d7e41e4b8c6ad764680e7eec95a98d4e, type: 3}
       propertyPath: m_Name
