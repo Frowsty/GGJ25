@@ -34,6 +34,13 @@ public class EnemySpawner : MonoBehaviour
 
             if (enemies[i].shouldDie)
             {
+                if (enemies[i] == null)
+                {
+                    enemies.RemoveAt(i);
+                    Destroy(enemies[i].gameObject);
+                    continue;
+                }
+
                 if (Random.value >= 0.45f)
                     Instantiate(shellPrefab, enemies[i].transform.position, Quaternion.identity);
                 Destroy(enemies[i].gameObject);
