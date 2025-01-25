@@ -9,6 +9,19 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
 
     public List<BubbleMovement> bubbles;
 
+    private bool charge = false;
+    private BubbleMovement chargeBubble;
+    
+    private float chargeTimer = 0f;
+    private float lastCharge = 0f;
+    
+    private PlayerStats playerStats;
+
+    private void Awake()
+    {
+        playerStats = GetComponent<PlayerStats>();
+    }
+
     public void UpdateComponent()
     {
         for (int i = bubbles.Count - 1; i >= 0; i--)
@@ -20,14 +33,54 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
                 bubbles.RemoveAt(i);
             }
         }
+
+        if (InputSystem.actions["Charge"].WasPressedThisFrame() && !charge && Time.time - lastCharge > playerStats.GetChargedFireRate())
+        {
+            chargeBubble = Instantiate(bubblePrefab, transform.position, Quaternion.identity);
+            charge = true;
+        }
+
+        if (charge)
+        {
+            if (chargeBubble != null)
+            {
+                chargeTimer += Time.deltaTime;
+                chargeBubble.transform.localScale +=
+                    new Vector3(playerStats.GetChargeRate(), playerStats.GetChargeRate(), 0) * Time.deltaTime;
+                chargeBubble.transform.position = transform.position;
+
+                if (chargeTimer >= 1f)
+                {
+                    chargeBubble.spawnTime = Time.time;
+                    chargeBubble.direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+                    bubbles.Add(chargeBubble);
+                    chargeBubble = null;
+                    charge = false;
+                    lastCharge = Time.time;
+                }
+            }
+        }
+
+        if (InputSystem.actions["Charge"].WasReleasedThisFrame())
+        {
+            charge = false;
+            if (chargeBubble != null)
+            {
+                chargeBubble.spawnTime = Time.time;
+                chargeBubble.direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+                bubbles.Add(chargeBubble);
+                chargeBubble = null;
+                lastCharge = Time.time;
+            }
+
+            chargeTimer = 0f;
+        }
     }
 
     private void OnAttack(InputValue value)
     {
         var bubble = Instantiate(bubblePrefab, transform.position, Quaternion.identity);
-        Vector3 direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
-        direction.Normalize();
-        bubble.direction = direction; 
+        bubble.direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized; 
         bubble.spawnTime = Time.time;
         bubbles.Add(bubble);
     }
