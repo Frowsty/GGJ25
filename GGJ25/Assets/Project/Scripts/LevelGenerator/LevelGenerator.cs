@@ -10,6 +10,7 @@ public class LevelGenerator : MonoBehaviour
     public int maxRoomsMin;
     public int maxRoomsMax;
     public List<GameObject> possibleRooms;
+    public GameObject endPointRoom;
     public GameObject teleportPrefab;
     
     
