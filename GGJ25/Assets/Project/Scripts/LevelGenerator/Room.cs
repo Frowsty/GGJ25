@@ -8,8 +8,8 @@ public class Room : MonoBehaviour
 
     public List<Transform> directions = new ();
     public Collider2D roomCollider2D;
-    
-    
+
+    public bool hasSpawned = false;
     
     
     public List<Transform> GetPossibleDirections()
@@ -57,7 +57,7 @@ public class Room : MonoBehaviour
     public void DeactivateRoom()
     {
         
-        roomCollider2D.enabled = false;
+        //roomCollider2D.enabled = false;
 
         List<SpriteRenderer> roomSpriteRenderers = new (GetComponentsInChildren<SpriteRenderer>());
 
@@ -71,7 +71,7 @@ public class Room : MonoBehaviour
     public void ActivateRoom()
     {
         
-        roomCollider2D.enabled = true;
+        //roomCollider2D.enabled = true;
 
         List<SpriteRenderer> roomSpriteRenderers = new (GetComponentsInChildren<SpriteRenderer>());
 

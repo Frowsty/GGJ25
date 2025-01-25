@@ -14,6 +14,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
     
     private float chargeTimer = 0f;
     private float lastCharge = 0f;
+    private float lastAttack = 0f;
 
     public void UpdateComponent()
     {
@@ -32,6 +33,8 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
         {
             chargeBubble = Instantiate(bubblePrefab, transform.position, Quaternion.identity);
             charge = true;
+            chargeBubble.bubbleCollider = chargeBubble.GetComponent<CircleCollider2D>();
+            chargeBubble.bubbleCollider.enabled = false;
             GetComponent<Animator>().SetBool("IsShooting", true);
         }
 
@@ -46,6 +49,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
 
                 if (chargeTimer >= PlayerStats.Instance.GetChargeTime())
                 {
+                    chargeBubble.bubbleCollider.enabled = true;
                     chargeBubble.damage = Mathf.RoundToInt(chargeBubble.transform.localScale.x * PlayerStats.Instance.GetDamage());
                     chargeBubble.spawnTime = Time.time;
                     chargeBubble.direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
@@ -63,6 +67,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
             charge = false;
             if (chargeBubble != null)
             {
+                chargeBubble.bubbleCollider.enabled = true;
                 chargeBubble.damage = Mathf.RoundToInt(chargeBubble.transform.localScale.x * PlayerStats.Instance.GetDamage());
                 chargeBubble.spawnTime = Time.time;
                 chargeBubble.direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
@@ -78,10 +83,15 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
 
     private void OnAttack(InputValue value)
     {
-        var bubble = Instantiate(bubblePrefab, transform.position, Quaternion.identity);
-        bubble.damage = PlayerStats.Instance.GetDamage();
-        bubble.direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized; 
-        bubble.spawnTime = Time.time;
-        bubbles.Add(bubble);
+        if (Time.time - lastAttack >= PlayerStats.Instance.GetFireRate())
+        {
+            var bubble = Instantiate(bubblePrefab, transform.position, Quaternion.identity);
+            bubble.damage = PlayerStats.Instance.GetDamage();
+            bubble.direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+            bubble.spawnTime = Time.time;
+            bubbles.Add(bubble);
+
+            lastAttack = Time.time;
+        }
     }
 }

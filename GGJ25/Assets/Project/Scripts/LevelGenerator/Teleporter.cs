@@ -47,10 +47,12 @@ public class Teleporter : MonoBehaviour
                 (origin, destination) = (destination, origin);
             }
 
-            if (nextRoom != null)
+            if (nextRoom != null && !nextRoom.hasSpawned)
             {
                 foreach (var point in nextRoom.GetComponentsInChildren<SpawnPoint>())
                     EnemySpawner.Instance.SpawnEnemy(point.transform.position);
+                
+                nextRoom.hasSpawned = true;
             }
         }
     }

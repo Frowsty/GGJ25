@@ -67,7 +67,7 @@ public class LevelGenerator : MonoBehaviour
             }
 
             Vector3 pos = new Vector3();
-            print(roomTransform.name);
+            
             switch (roomTransform.name)
             {
                 case "Top":
