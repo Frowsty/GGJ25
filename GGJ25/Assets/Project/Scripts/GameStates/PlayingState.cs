@@ -14,6 +14,7 @@ public class PlayingState : State
         
         // call update loops
         Player.Instance.UpdatePlayer();
+        EnemySpawner.Instance.UpdateEnemySpawner();
     }
     public override void FixedUpdateState() {}
 

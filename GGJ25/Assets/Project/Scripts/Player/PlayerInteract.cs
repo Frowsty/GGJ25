@@ -14,5 +14,8 @@ public class PlayerInteract : MonoBehaviour, IPlayerComponent
     {
         if (canInteract && InputSystem.actions["Interact"].WasPressedThisFrame())
             Debug.Log("Open merchant menu");
+        
+        if (Input.GetKeyDown(KeyCode.H))
+            EnemySpawner.Instance.SpawnEnemy(transform.position + new Vector3(5f, 5f, 0));
     }
 }
