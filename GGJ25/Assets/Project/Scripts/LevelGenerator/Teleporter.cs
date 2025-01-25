@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using Microsoft.Win32.SafeHandles;
 using UnityEngine;
 
 public class Teleporter : MonoBehaviour
@@ -25,11 +26,13 @@ public class Teleporter : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Room nextRoom = null;
             if (PlayerStats.Instance.activeRoom == destination)
             {
                 destination.DeactivateRoom();
                 origin.ActivateRoom();
                 other.gameObject.transform.position = origin.transform.position;
+                nextRoom = origin;
                 Camera.main?.transform.DOMove(origin.transform.position, 0.5f).SetEase(Ease.Linear);
                 PlayerStats.Instance.activeRoom = origin;
             }
@@ -38,11 +41,17 @@ public class Teleporter : MonoBehaviour
                 origin.DeactivateRoom();
                 destination.ActivateRoom();
                 other.gameObject.transform.position = destination.transform.position;
+                nextRoom = destination;
                 Camera.main?.transform.DOMove(destination.transform.position, 0.5f).SetEase(Ease.Linear);
                 PlayerStats.Instance.activeRoom = destination;
                 (origin, destination) = (destination, origin);
-            }    
+            }
 
+            if (nextRoom != null)
+            {
+                foreach (var point in nextRoom.GetComponentsInChildren<SpawnPoint>())
+                    EnemySpawner.Instance.SpawnEnemy(point.transform.position);
+            }
         }
     }
 }

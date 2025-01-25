@@ -6,8 +6,9 @@ using Random = UnityEngine.Random;
 public class LevelGenerator : MonoBehaviour
 {
     
-    public static LevelGenerator instance;
-    public int maxRooms;
+    public static LevelGenerator Instance;
+    public int maxRoomsMin;
+    public int maxRoomsMax;
     public List<GameObject> possibleRooms;
     public GameObject teleportPrefab;
     
@@ -18,13 +19,13 @@ public class LevelGenerator : MonoBehaviour
     
     private void Awake()
     {
-        if(instance == null)
-            instance = this;
-        else if (instance != this)
+        if(Instance == null)
+            Instance = this;
+        else if (Instance != this)
             Destroy(gameObject);
     }
 
-    private void Update()
+    /*private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -34,11 +35,21 @@ public class LevelGenerator : MonoBehaviour
             GenerateTeleport();
             InitializeDungeon();
         }
+    }*/
+
+    public void StartGeneration()
+    {
+        if(rooms.Count!=0)
+            ClearDungeon();
+        GenerateRooms();
+        GenerateTeleport();
+        InitializeDungeon();
     }
 
 
     public void GenerateRooms()
     {
+        int maxRooms = Random.Range(maxRoomsMin, maxRoomsMax);
         for (int i = 0; i < maxRooms; i++)
         {
             GameObject room;

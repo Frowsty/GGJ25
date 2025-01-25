@@ -426,7 +426,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937fc69071501b94aa6c5603a6325df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRooms: 5
+  maxRoomsMin: 5
+  maxRoomsMax: 8
   possibleRooms:
   - {fileID: 5213640551044873215, guid: b29ed0b8ba22ae141aa8c283ba142ece, type: 3}
   teleportPrefab: {fileID: 8419828057079510630, guid: feff776b5438899429bf9344300b4318, type: 3}

@@ -18,15 +18,15 @@ public class Player : MonoBehaviour
     private void Start()
     {
         components = GetComponentsInChildren<IPlayerComponent>();
+        
+        LevelGenerator.Instance.StartGeneration();
     }
 
     // Update is called once per frame
     public void UpdatePlayer()
     {
         foreach (var component in components)
-        {
             component.UpdateComponent();
-        }
     }
 }
 
