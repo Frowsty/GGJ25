@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerStats : StatBase, IPlayerComponent
 {
+    public static PlayerStats Instance;
     [SerializeField]
     private float chargeRate;
     [SerializeField]
@@ -12,6 +13,14 @@ public class PlayerStats : StatBase, IPlayerComponent
     private int fireRate;
     [SerializeField]
     private float piercingRate;
+
+    public void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
     
     public void UpdateComponent()
     {

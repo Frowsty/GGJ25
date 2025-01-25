@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour, IPlayerComponent
     private Vector2 direction = Vector2.zero;
 
     private Rigidbody2D rb2d;
-    private float speed = 10f;
 
     private void Start()
     {
@@ -16,7 +15,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerComponent
 
     public void UpdateComponent()
     {
-        rb2d.linearVelocity = direction * speed;
+        rb2d.linearVelocity = direction * PlayerStats.Instance.GetMovementSpeed();
     }
 
     private void OnMove(InputValue value)

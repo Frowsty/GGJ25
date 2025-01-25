@@ -14,13 +14,6 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
     
     private float chargeTimer = 0f;
     private float lastCharge = 0f;
-    
-    private PlayerStats playerStats;
-
-    private void Awake()
-    {
-        playerStats = GetComponent<PlayerStats>();
-    }
 
     public void UpdateComponent()
     {
@@ -34,7 +27,8 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
             }
         }
 
-        if (InputSystem.actions["Charge"].WasPressedThisFrame() && !charge && Time.time - lastCharge > playerStats.GetChargedFireRate())
+        if (InputSystem.actions["Charge"].WasPressedThisFrame() && !charge &&
+            Time.time - lastCharge > PlayerStats.Instance.GetChargedFireRate())
         {
             chargeBubble = Instantiate(bubblePrefab, transform.position, Quaternion.identity);
             charge = true;
@@ -46,12 +40,12 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
             {
                 chargeTimer += Time.deltaTime;
                 chargeBubble.transform.localScale +=
-                    new Vector3(playerStats.GetChargeRate(), playerStats.GetChargeRate(), 0) * Time.deltaTime;
+                    new Vector3(PlayerStats.Instance.GetChargeRate(), PlayerStats.Instance.GetChargeRate(), 0) * Time.deltaTime;
                 chargeBubble.transform.position = transform.position;
 
-                if (chargeTimer >= playerStats.GetChargeTime())
+                if (chargeTimer >= PlayerStats.Instance.GetChargeTime())
                 {
-                    chargeBubble.damage = Mathf.RoundToInt(chargeBubble.transform.localScale.x * playerStats.GetDamage());
+                    chargeBubble.damage = Mathf.RoundToInt(chargeBubble.transform.localScale.x * PlayerStats.Instance.GetDamage());
                     chargeBubble.spawnTime = Time.time;
                     chargeBubble.direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
                     bubbles.Add(chargeBubble);
@@ -67,7 +61,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
             charge = false;
             if (chargeBubble != null)
             {
-                chargeBubble.damage = Mathf.RoundToInt(chargeBubble.transform.localScale.x * playerStats.GetDamage());
+                chargeBubble.damage = Mathf.RoundToInt(chargeBubble.transform.localScale.x * PlayerStats.Instance.GetDamage());
                 chargeBubble.spawnTime = Time.time;
                 chargeBubble.direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
                 bubbles.Add(chargeBubble);
@@ -82,7 +76,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
     private void OnAttack(InputValue value)
     {
         var bubble = Instantiate(bubblePrefab, transform.position, Quaternion.identity);
-        bubble.damage = playerStats.GetDamage();
+        bubble.damage = PlayerStats.Instance.GetDamage();
         bubble.direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized; 
         bubble.spawnTime = Time.time;
         bubbles.Add(bubble);
