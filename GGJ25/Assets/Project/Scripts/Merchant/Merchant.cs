@@ -12,6 +12,7 @@ public class Merchant : MonoBehaviour
     private Button damageUpgradeButton;
     private Button pierceUpgradeButton;
     private Button chargeTimeUpgradeButton;
+    private Button chargeRateUpgradeButton;
 
     private Button closeMerchantButton;
 
@@ -31,6 +32,7 @@ public class Merchant : MonoBehaviour
         damageUpgradeButton = GameObject.Find("UpgradeDamage").GetComponent<Button>();
         pierceUpgradeButton = GameObject.Find("UpgradePierce").GetComponent<Button>();
         chargeTimeUpgradeButton = GameObject.Find("UpgradeChargeTime").GetComponent<Button>();
+        chargeRateUpgradeButton = GameObject.Find("UpgradeChargeRate").GetComponent<Button>();
         
         closeMerchantButton = GameObject.Find("CloseMerchant").GetComponent<Button>();
         
@@ -42,6 +44,7 @@ public class Merchant : MonoBehaviour
         costValues.Add("damage", 5f);
         costValues.Add("pierce", 5f);
         costValues.Add("chargeTime", 5f);
+        costValues.Add("chargeRate", 5f);
     }
 
     private void Start()
@@ -50,6 +53,16 @@ public class Merchant : MonoBehaviour
         closeMerchantButton.onClick.AddListener(delegate
         {
             HideMerchantMenu();
+        });
+        
+        chargeRateUpgradeButton.onClick.AddListener(delegate
+        {
+            if (PlayerStats.Instance.GetCurrency() >= costValues["chargeRate"])
+            {
+                PlayerStats.Instance.SetCurrency(PlayerStats.Instance.GetCurrency() - costValues["chargeRate"]);
+                PlayerStats.Instance.SetChargeRate(PlayerStats.Instance.GetChargeRate() + 0.5f);
+                costValues["chargeRate"] *= 2;
+            }
         });
         
         chargeTimeUpgradeButton.onClick.AddListener(delegate
