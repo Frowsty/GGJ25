@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: fa65afc6d8714934c838748d5a8fa618
+guid: 35a2209e83772e740a24f3aabc97aebe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1383734970849922731
-    second: player_proto_0
+      213: 5729124413429827294
+    second: player_blow_front_0
+  - first:
+      213: -6835314684342751
+    second: player_blow_front_1
+  - first:
+      213: 2691564780600198347
+    second: player_blow_front_2
+  - first:
+      213: -1977817229536295846
+    second: player_blow_front_3
+  - first:
+      213: 2000982213394605584
+    second: player_blow_front_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,12 +112,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_proto_0
+      name: player_blow_front_0
       rect:
         serializedVersion: 2
-        x: 16
+        x: 15
         y: 0
-        width: 30
+        width: 32
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,8 +127,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bae8bc8ef93043310800000000000000
-      internalID: 1383734970849922731
+      spriteID: ed6c080cc40f18f40800000000000000
+      internalID: 5729124413429827294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_blow_front_1
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 0
+        width: 29
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12ecf484157b7eff0800000000000000
+      internalID: -6835314684342751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_blow_front_2
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 0
+        width: 29
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc480ad48eb5a5520800000000000000
+      internalID: 2691564780600198347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_blow_front_3
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 0
+        width: 29
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5487da65b16d84e0800000000000000
+      internalID: -1977817229536295846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_blow_front_4
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 0
+        width: 29
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 016a24fa8bae4cb10800000000000000
+      internalID: 2000982213394605584
       vertices: []
       indices: 
       edges: []
@@ -135,7 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      player_proto_0: 1383734970849922731
+      player_blow_front_0: 5729124413429827294
+      player_blow_front_1: -6835314684342751
+      player_blow_front_2: 2691564780600198347
+      player_blow_front_3: -1977817229536295846
+      player_blow_front_4: 2000982213394605584
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
