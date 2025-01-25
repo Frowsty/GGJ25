@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField]
     private Enemy enemyPrefab;
+    [SerializeField]
+    private Shell shellPrefab; 
     
     public UnityEvent OnRoomClear;
     
@@ -30,6 +34,8 @@ public class EnemySpawner : MonoBehaviour
 
             if (enemies[i].shouldDie)
             {
+                if (Random.value >= 0.45f)
+                    Instantiate(shellPrefab, enemies[i].transform.position, Quaternion.identity);
                 Destroy(enemies[i].gameObject);
                 enemies.RemoveAt(i);
             }

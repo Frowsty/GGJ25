@@ -72,6 +72,11 @@ public class Enemy : MonoBehaviour, IEnemy
         stats.SetHealth(Mathf.RoundToInt(stats.GetHealth() - damage));
 
         if (stats.GetHealth() <= 0)
+        {
             shouldDie = true;
+            foreach (Bullet bullet in bullets)
+                Destroy(bullet.gameObject);
+            bullets.Clear();
+        }
     }
 }
