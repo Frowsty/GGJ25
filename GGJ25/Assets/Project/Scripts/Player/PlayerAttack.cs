@@ -32,6 +32,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
         {
             chargeBubble = Instantiate(bubblePrefab, transform.position, Quaternion.identity);
             charge = true;
+            GetComponent<Animator>().SetBool("IsShooting", true);
         }
 
         if (charge)
@@ -52,6 +53,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
                     chargeBubble = null;
                     charge = false;
                     lastCharge = Time.time;
+                    GetComponent<Animator>().SetBool("IsShooting", false);
                 }
             }
         }
@@ -67,6 +69,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
                 bubbles.Add(chargeBubble);
                 chargeBubble = null;
                 lastCharge = Time.time;
+                GetComponent<Animator>().SetBool("IsShooting", false);
             }
 
             chargeTimer = 0f;
