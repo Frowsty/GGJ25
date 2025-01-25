@@ -9,12 +9,15 @@ public class Room : MonoBehaviour
     public List<Transform> directions = new ();
     public Collider2D roomCollider2D;
     
+    
+    
+    
     public List<Transform> GetPossibleDirections()
     {
         List<Transform> possibleDirections = new(directions);
         foreach (var dir in directions)
         {
-            Collider2D[] roomCollider = Physics2D.OverlapCircleAll(dir.position, 1f);
+            Collider2D[] roomCollider = Physics2D.OverlapCircleAll(dir.position, 3.5f);
             foreach (var c in roomCollider)
             {
                 if(c == roomCollider2D)
@@ -38,16 +41,44 @@ public class Room : MonoBehaviour
         Dictionary<GameObject,Transform> neighbours = new();
         foreach (var dir in directions)
         {
-            Collider2D[] roomCollider = Physics2D.OverlapCircleAll(dir.position, 1f);
+            Collider2D[] roomCollider = Physics2D.OverlapCircleAll(dir.position, 3.5f);
             foreach (var c in roomCollider)
             {
                 if(c == roomCollider2D)
                     continue;
-                neighbours.Add(c.gameObject, dir);
+                neighbours.TryAdd(c.gameObject, dir);
                 
             }
         }
         return neighbours;
     }
 
+
+    public void DeactivateRoom()
+    {
+        
+        roomCollider2D.enabled = false;
+
+        List<SpriteRenderer> roomSpriteRenderers = new (GetComponentsInChildren<SpriteRenderer>());
+
+        foreach (var renderer in roomSpriteRenderers)
+        {
+            renderer.enabled = false;
+        }
+        
+    }
+
+    public void ActivateRoom()
+    {
+        
+        roomCollider2D.enabled = true;
+
+        List<SpriteRenderer> roomSpriteRenderers = new (GetComponentsInChildren<SpriteRenderer>());
+
+        foreach (var renderer in roomSpriteRenderers)
+        {
+            renderer.enabled = true;
+        }
+        
+    }
 }

@@ -14,6 +14,8 @@ public class PlayerStats : StatBase, IPlayerComponent
     [SerializeField]
     private float piercingRate;
 
+    public Room activeRoom;
+    
     public void Awake()
     {
         if (Instance == null)

@@ -281,6 +281,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4646560795373104006, guid: ef6157decc74e8b4f882cd8445f0d0fd, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6442299021490466247, guid: ef6157decc74e8b4f882cd8445f0d0fd, type: 3}
       propertyPath: m_Name
       value: Player
@@ -456,12 +460,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937fc69071501b94aa6c5603a6325df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRooms: 5
+  maxRooms: 10
   possibleRooms:
   - {fileID: 5213640551044873215, guid: b29ed0b8ba22ae141aa8c283ba142ece, type: 3}
   teleportPrefab: {fileID: 8419828057079510630, guid: feff776b5438899429bf9344300b4318, type: 3}
   rooms: []
   _lastRoom: {fileID: 0}
+  teleports: []
 --- !u!4 &1444806757
 Transform:
   m_ObjectHideFlags: 0
