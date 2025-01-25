@@ -1575,7 +1575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7257524874615249257, guid: d7e41e4b8c6ad764680e7eec95a98d4e, type: 3}
       propertyPath: m_text
-      value: 'Bubble Blender
+      value: 'The Bubble Blender
 
 '
       objectReference: {fileID: 0}
