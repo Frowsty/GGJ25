@@ -111,7 +111,7 @@ public class Merchant : MonoBehaviour
             if (PlayerStats.Instance.GetCurrency() >= costValues["health"])
             {
                 PlayerStats.Instance.SetCurrency(PlayerStats.Instance.GetCurrency() - costValues["health"]);
-                PlayerStats.Instance.SetMaxHealth(PlayerStats.Instance.GetHealth() + 5);
+                PlayerStats.Instance.SetMaxHealth(PlayerStats.Instance.GetMaxHealth() + 5);
                 costValues["health"] *= 2;
             }
         });
