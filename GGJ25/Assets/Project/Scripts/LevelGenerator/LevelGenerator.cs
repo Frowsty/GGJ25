@@ -145,6 +145,25 @@ public class LevelGenerator : MonoBehaviour
         
     }
 
+    public void AdjustTeleport()
+    {
+        foreach (var teleport in teleports)
+        {
+            print("Adjusting teleport");
+            teleport.gameObject.SetActive(true);
+            teleport.gameObject.GetComponent<SpriteRenderer>().color = teleport.inactiveColor;
+        }
+        
+        foreach (var teleport in teleports)
+        {
+            if (!teleport.origin.isActive && !teleport.destination.isActive)
+            {
+                teleport.gameObject.SetActive(false);
+            }
+
+        }
+        
+    }
 
     public void InitializeDungeon()
     {

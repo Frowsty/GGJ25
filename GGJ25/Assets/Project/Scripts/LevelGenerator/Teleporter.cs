@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using Microsoft.Win32.SafeHandles;
 using UnityEngine;
@@ -8,10 +9,15 @@ public class Teleporter : MonoBehaviour
 
     public Room origin;
     public Room destination;
+
+    public Color activeColor;
+    public Color inactiveColor;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        gameObject.GetComponent<SpriteRenderer>().color = inactiveColor;
+        EnemySpawner.Instance.OnRoomClear.AddListener(ToggleTeleport);
         
     }
 
@@ -24,11 +30,14 @@ public class Teleporter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if(EnemySpawner.Instance.enemies.Count != 0)
+            return;
         if (other.CompareTag("Player"))
         {
             Room nextRoom = null;
             if (PlayerStats.Instance.activeRoom == destination)
             {
+                
                 destination.DeactivateRoom();
                 origin.ActivateRoom();
                 other.gameObject.transform.position = origin.transform.position;
@@ -47,6 +56,8 @@ public class Teleporter : MonoBehaviour
                 (origin, destination) = (destination, origin);
             }
 
+            LevelGenerator.Instance.AdjustTeleport();
+            
             if (nextRoom != null && !nextRoom.hasSpawned)
             {
                 foreach (var point in nextRoom.GetComponentsInChildren<SpawnPoint>())
@@ -56,4 +67,15 @@ public class Teleporter : MonoBehaviour
             }
         }
     }
+
+
+    public void ToggleTeleport()
+    {
+        gameObject.GetComponent<SpriteRenderer>().color = activeColor;
+    }
+    
+
+    
+ 
+    
 }
