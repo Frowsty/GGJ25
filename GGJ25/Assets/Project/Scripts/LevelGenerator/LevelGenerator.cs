@@ -91,7 +91,6 @@ public class LevelGenerator : MonoBehaviour
                     pos.y = _lastRoom.transform.position.y-10;
                     break;
                 case "BottomRight":
-                    print("BottomRight");
                     pos.x = _lastRoom.transform.position.x+30;
                     pos.y = _lastRoom.transform.position.y-10;
                     break;

@@ -56,7 +56,7 @@ public class Room : MonoBehaviour
 
     public void DeactivateRoom()
     {
-        
+       /* 
         //roomCollider2D.enabled = false;
 
         List<SpriteRenderer> roomSpriteRenderers = new (GetComponentsInChildren<SpriteRenderer>());
@@ -65,12 +65,12 @@ public class Room : MonoBehaviour
         {
             renderer.enabled = false;
         }
-        
+        */
     }
 
     public void ActivateRoom()
     {
-        
+        /*
         //roomCollider2D.enabled = true;
 
         List<SpriteRenderer> roomSpriteRenderers = new (GetComponentsInChildren<SpriteRenderer>());
@@ -79,6 +79,6 @@ public class Room : MonoBehaviour
         {
             renderer.enabled = true;
         }
-        
+        */
     }
 }

@@ -10,9 +10,11 @@ public class PlayerStats : StatBase, IPlayerComponent
     [SerializeField]
     private float chargeTime;
     [SerializeField]
-    private int fireRate;
+    private float fireRate;
     [SerializeField]
     private float piercingRate;
+    [SerializeField]
+    private float currency;
 
     public Room activeRoom;
     
@@ -34,10 +36,12 @@ public class PlayerStats : StatBase, IPlayerComponent
     public float GetChargeTime() => chargeTime;
     public float GetFireRate() => fireRate;
     public float GetPiercingRate() => piercingRate;
+    public float GetCurrency() => currency;
         
     public void SetChargeRate(float newChargeRate) => chargeRate = newChargeRate;
-    public void SetChargeFireRate(float newChareFireRate) => chargeFireRate = newChareFireRate;
+    public void SetChargeFireRate(float newChargeFireRate) => chargeFireRate = newChargeFireRate;
     public void SetChargeTime(float newChargeTime) => chargeTime = newChargeTime;
-    public void SetFireRate(int newFireRate) => fireRate = newFireRate;
+    public void SetFireRate(float newFireRate) => fireRate = newFireRate;
     public void SetPierceRate(float newPierce) => piercingRate = newPierce;
+    public void SetCurrency(float newCurrency) => currency = newCurrency;
 }

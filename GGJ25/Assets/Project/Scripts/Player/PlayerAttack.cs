@@ -28,6 +28,20 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
             }
         }
 
+        if (InputSystem.actions["Attack"].IsPressed())
+        {
+            if (Time.time - lastAttack >= PlayerStats.Instance.GetFireRate())
+            {
+                var bubble = Instantiate(bubblePrefab, transform.position, Quaternion.identity);
+                bubble.damage = PlayerStats.Instance.GetDamage();
+                bubble.direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+                bubble.spawnTime = Time.time;
+                bubbles.Add(bubble);
+
+                lastAttack = Time.time;
+            }
+        }
+
         if (InputSystem.actions["Charge"].WasPressedThisFrame() && !charge &&
             Time.time - lastCharge > PlayerStats.Instance.GetChargedFireRate())
         {
@@ -78,20 +92,6 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
             }
 
             chargeTimer = 0f;
-        }
-    }
-
-    private void OnAttack(InputValue value)
-    {
-        if (Time.time - lastAttack >= PlayerStats.Instance.GetFireRate())
-        {
-            var bubble = Instantiate(bubblePrefab, transform.position, Quaternion.identity);
-            bubble.damage = PlayerStats.Instance.GetDamage();
-            bubble.direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-            bubble.spawnTime = Time.time;
-            bubbles.Add(bubble);
-
-            lastAttack = Time.time;
         }
     }
 }

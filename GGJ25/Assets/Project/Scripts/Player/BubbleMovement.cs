@@ -9,7 +9,7 @@ public class BubbleMovement : MonoBehaviour
     public float spawnTime;
     public bool shouldDestroy = false;
     public Vector3 direction;
-    public int damage;
+    public float damage;
     
     public void UpdateBubble()
     {
