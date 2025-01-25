@@ -72,6 +72,14 @@ public class ResolutionControl : MonoBehaviour
     {
         Resolution resolution = filteredResolutions[resolutionIndex];
 
-        Screen.SetResolution(resolution.width, resolution.height, true);
+        if (Screen.fullScreen == true)
+        {
+            Screen.SetResolution(resolution.width, resolution.height, true);
+        }
+        else 
+        {
+            Screen.SetResolution(resolution.width, resolution.height, false);
+        }
+        
     }
 }
