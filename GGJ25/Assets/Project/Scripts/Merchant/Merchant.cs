@@ -10,6 +10,8 @@ public class Merchant : MonoBehaviour
     private Button healthUpgradeButton;
     private Button fireRateUpgradeButton;
     private Button damageUpgradeButton;
+    private Button pierceUpgradeButton;
+    private Button chargeTimeUpgradeButton;
 
     private Button closeMerchantButton;
 
@@ -27,6 +29,8 @@ public class Merchant : MonoBehaviour
         healthUpgradeButton = GameObject.Find("UpgradeHealth").GetComponent<Button>();
         fireRateUpgradeButton = GameObject.Find("UpgradeFireRate").GetComponent<Button>();
         damageUpgradeButton = GameObject.Find("UpgradeDamage").GetComponent<Button>();
+        pierceUpgradeButton = GameObject.Find("UpgradePierce").GetComponent<Button>();
+        chargeTimeUpgradeButton = GameObject.Find("UpgradeChargeTime").GetComponent<Button>();
         
         closeMerchantButton = GameObject.Find("CloseMerchant").GetComponent<Button>();
         
@@ -36,6 +40,8 @@ public class Merchant : MonoBehaviour
         costValues.Add("health", 2f);
         costValues.Add("fireRate", 5f);
         costValues.Add("damage", 5f);
+        costValues.Add("pierce", 5f);
+        costValues.Add("chargeTime", 5f);
     }
 
     private void Start()
@@ -44,6 +50,26 @@ public class Merchant : MonoBehaviour
         closeMerchantButton.onClick.AddListener(delegate
         {
             HideMerchantMenu();
+        });
+        
+        chargeTimeUpgradeButton.onClick.AddListener(delegate
+        {
+            if (PlayerStats.Instance.GetCurrency() >= costValues["chargeTime"])
+            {
+                PlayerStats.Instance.SetCurrency(PlayerStats.Instance.GetCurrency() - costValues["chargeTime"]);
+                PlayerStats.Instance.SetChargeTime(PlayerStats.Instance.GetChargeTime() + 0.2f);
+                costValues["chargeTime"] *= 2;
+            }
+        });
+        
+        pierceUpgradeButton.onClick.AddListener(delegate
+        {
+            if (PlayerStats.Instance.GetCurrency() >= costValues["pierce"])
+            {
+                PlayerStats.Instance.SetCurrency(PlayerStats.Instance.GetCurrency() - costValues["pierce"]);
+                PlayerStats.Instance.SetPierceRate(PlayerStats.Instance.GetPiercingRate() + 0.05f);
+                costValues["pierce"] *= 2;
+            }
         });
         
         damageUpgradeButton.onClick.AddListener(delegate
