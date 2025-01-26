@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -88,6 +89,13 @@ public class Enemy : MonoBehaviour, IEnemy
                 Destroy(bullet.gameObject);
             bullets.Clear();
         }
-        
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            PlayerStats.Instance.SetHealth(Mathf.RoundToInt(PlayerStats.Instance.GetHealth() - stats.GetDamage()));
+        }
     }
 }
