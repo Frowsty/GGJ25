@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour, IEnemy
     [SerializeField]
     private Bullet bulletPrefab;
 
-    private float fireRate = 1f;
+    private float fireRate = 1.5f;
     private float lastShot = 0f;
 
     public void InitLastShot() => lastShot = Time.time;
