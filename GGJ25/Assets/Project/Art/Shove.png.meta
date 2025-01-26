@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4e6e8d64432d10c4eb52e9122149a006
+guid: 4437be4386d90f546bab3076b554f8aa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8488237560473814485
-    second: tiki_torch_0
+      213: 6614203175608040953
+    second: Shove_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tiki_torch_0
+      name: Shove_0
       rect:
         serializedVersion: 2
         x: 22
-        y: 0
-        width: 19
-        height: 52
+        y: 14
+        width: 35
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5d58b21b6174cc570800000000000000
-      internalID: 8488237560473814485
+      spriteID: 9fdb062aebe5acb50800000000000000
+      internalID: 6614203175608040953
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      tiki_torch_0: 8488237560473814485
+      Shove_0: 6614203175608040953
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
