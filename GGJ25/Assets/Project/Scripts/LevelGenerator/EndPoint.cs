@@ -8,8 +8,7 @@ public class EndPoint : MonoBehaviour
     public SpriteRenderer bg;
     private void Start()
     {
-        if(bg != null)
-            bg=GameObject.FindGameObjectWithTag("BackGround").GetComponent<SpriteRenderer>();    
+        bg=GameObject.FindGameObjectWithTag("BackGround").GetComponent<SpriteRenderer>();    
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,10 +22,13 @@ public class EndPoint : MonoBehaviour
 
     public IEnumerator EndRoutine()
     {
-        bg.DOColor(new Color(0, 0, 0, 1f), 0.4f);
+    
+        
+        bg?.DOColor(new Color(0, 0, 0, 1f), 0.4f);
         yield return new WaitForSeconds(0.4f);
         LevelGenerator.Instance.ResetAndIncrease();
         bg.DOColor(new Color(0, 0, 0, 0f), 0.4f);
+        
     }
     
     

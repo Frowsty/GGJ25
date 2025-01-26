@@ -6,7 +6,7 @@ public class Merchant : MonoBehaviour
 {
     public static Merchant Instance;
 
-    private GameObject merchantMenu;
+    public GameObject merchantMenu;
     private Button healthUpgradeButton;
     private Button fireRateUpgradeButton;
     private Button damageUpgradeButton;
@@ -25,7 +25,7 @@ public class Merchant : MonoBehaviour
         else
             Destroy(gameObject);
 
-        merchantMenu = GameObject.Find("MerchantMenu");
+       
         
         healthUpgradeButton = GameObject.Find("UpgradeHealth").GetComponent<Button>();
         fireRateUpgradeButton = GameObject.Find("UpgradeFireRate").GetComponent<Button>();

@@ -144,6 +144,8 @@ public class LevelGenerator : MonoBehaviour
                     
                 }
             }
+
+
         
     }
 
@@ -158,10 +160,11 @@ public class LevelGenerator : MonoBehaviour
         
         foreach (var teleport in teleports)
         {
-            if (!teleport.origin.isActive && !teleport.destination.isActive)
-            {
-                teleport.gameObject.SetActive(false);
-            }
+            
+                if (!teleport.origin.isActive && !teleport.destination.isActive)
+                {
+                    teleport.gameObject.SetActive(false);
+                }
 
         }
         

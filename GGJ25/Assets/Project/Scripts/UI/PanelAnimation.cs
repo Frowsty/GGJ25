@@ -7,9 +7,10 @@ using UnityEngine;
 public class PanelAnimation : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    private float targetScale;
     private void Awake()
     {
+        targetScale = transform.localScale.x;
         transform.localScale = Vector3.zero;
     }
 
@@ -27,6 +28,6 @@ public class PanelAnimation : MonoBehaviour
     private void OnEnable()
     {
         transform.localScale = Vector3.zero;
-        transform.DOScale(2f, 0.5f).SetEase(Ease.OutBounce);
+        transform.DOScale(targetScale, 0.5f).SetEase(Ease.OutBounce);
     }
 }

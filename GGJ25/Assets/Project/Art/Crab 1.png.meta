@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 4e6e8d64432d10c4eb52e9122149a006
+guid: 6ebb1ded398ca76459140d6847ce1b6a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8488237560473814485
-    second: tiki_torch_0
+      213: 3086549971915525927
+    second: Crab 1_0
+  - first:
+      213: -3661791518064648929
+    second: Crab 1_1
+  - first:
+      213: -3288608718664448431
+    second: Crab 1_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -113,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tiki_torch_0
+      name: Crab 1_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 0
-        width: 19
-        height: 52
+        x: 5
+        y: 12
+        width: 55
+        height: 49
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +134,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5d58b21b6174cc570800000000000000
-      internalID: 8488237560473814485
+      spriteID: 72f4481a8d0a5da20800000000000000
+      internalID: 3086549971915525927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crab 1_1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 15
+        width: 66
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1dd73ce304be2dc0800000000000000
+      internalID: -3661791518064648929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crab 1_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 10
+        width: 63
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 156c0ce4bc38c52d0800000000000000
+      internalID: -3288608718664448431
       vertices: []
       indices: 
       edges: []
@@ -147,8 +197,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      tiki_torch_0: 8488237560473814485
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

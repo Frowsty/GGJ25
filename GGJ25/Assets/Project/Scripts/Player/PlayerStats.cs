@@ -29,7 +29,10 @@ public class PlayerStats : StatBase, IPlayerComponent
     public void UpdateComponent()
     {
         if (GetHealth() <= 0)
+        {
             GameManager.Instance.SwitchState<PauseState>();
+            UIManager.instance.ShowGameOverScreen();
+        }
         // switch to death screen
     }
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Enemy : MonoBehaviour, IEnemy
 {
@@ -8,7 +9,9 @@ public class Enemy : MonoBehaviour, IEnemy
     private float speed = 2f;
     private StatBase stats;
     private Rigidbody2D rb2d;
-
+    private SpriteRenderer sr;
+    
+    
     [SerializeField]
     private Bullet bulletPrefab;
 
@@ -33,6 +36,7 @@ public class Enemy : MonoBehaviour, IEnemy
         speed = stats.GetMovementSpeed();
         
         rb2d = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
     
     public void UpdateEnemy()
@@ -72,7 +76,11 @@ public class Enemy : MonoBehaviour, IEnemy
     public void TakeDamage(float damage)
     {
         stats.SetHealth(Mathf.RoundToInt(stats.GetHealth() - damage));
-
+        
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(sr.DOColor(Color.red, 0.2f));
+        sequence.Append(sr.DOColor(Color.white, 0.2f));
+        
         if (stats.GetHealth() <= 0)
         {
             shouldDie = true;
@@ -80,5 +88,6 @@ public class Enemy : MonoBehaviour, IEnemy
                 Destroy(bullet.gameObject);
             bullets.Clear();
         }
+        
     }
 }

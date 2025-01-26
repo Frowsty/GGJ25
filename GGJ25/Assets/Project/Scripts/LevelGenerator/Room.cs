@@ -56,6 +56,7 @@ public class Room : MonoBehaviour
 
     public void DeactivateRoom()
     {
+        
        isActive = false;
         roomCollider2D.enabled = false;
 
@@ -72,6 +73,7 @@ public class Room : MonoBehaviour
 
     public void ActivateRoom()
     {
+        
         isActive = true;
         roomCollider2D.enabled = true;
 

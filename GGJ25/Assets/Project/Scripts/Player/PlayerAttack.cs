@@ -97,5 +97,8 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
         }
     }
 
-    public void OnLook(InputValue value) => mousePosition = value.Get<Vector2>();
+    public void OnLook(InputValue value)
+    {
+        mousePosition = value.Get<Vector2>();
+    }
 }
