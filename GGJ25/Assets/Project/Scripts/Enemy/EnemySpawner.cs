@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     public static EnemySpawner Instance { get; private set; }
 
     [SerializeField]
-    private Enemy enemyPrefab;
+    private Enemy[] enemyPrefabs;
     [SerializeField]
     private Shell shellPrefab; 
     
@@ -54,7 +54,9 @@ public class EnemySpawner : MonoBehaviour
     // pass the spawners position here and spawn the enemy
     public void SpawnEnemy(Vector3 position)
     {
-        enemies.Add(Instantiate(enemyPrefab, position, Quaternion.identity, transform));
+        Enemy enemy = Instantiate(enemyPrefabs[Random.value >= 0.5 ? 0 : 1], position, Quaternion.identity, transform);
+        enemy.InitLastShot();
+        enemies.Add(enemy);
     }
 }
 

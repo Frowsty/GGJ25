@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour, IEnemy
 
     private float fireRate = 1f;
     private float lastShot = 0f;
+
+    public void InitLastShot() => lastShot = Time.time;
     
     List<Bullet> bullets = new();
 
@@ -42,28 +44,28 @@ public class Enemy : MonoBehaviour, IEnemy
             case EnemyType.Ranged:
                 if (Vector3.Distance(Player.Instance.transform.position, transform.position) <= 7f)
                     rb2d.linearVelocity = Vector3.zero;
+                
+                if (Time.time - lastShot >= fireRate)
+                {
+                    Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+                    bullet.direction = direction;
+                    bullet.spawnTime = Time.time;
+                    bullets.Add(bullet);
+            
+                    lastShot = Time.time;
+                }
+
+                for (int i = bullets.Count - 1; i >= 0; i--)
+                {
+                    bullets[i].UpdateBullet();
+            
+                    if (bullets[i].shouldDestroy)
+                    {
+                        Destroy(bullets[i].gameObject);
+                        bullets.RemoveAt(i);
+                    }
+                }
                 break;
-        }
-
-        if (Time.time - lastShot >= fireRate)
-        {
-            Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-            bullet.direction = direction;
-            bullet.spawnTime = Time.time;
-            bullets.Add(bullet);
-            
-            lastShot = Time.time;
-        }
-
-        for (int i = bullets.Count - 1; i >= 0; i--)
-        {
-            bullets[i].UpdateBullet();
-            
-            if (bullets[i].shouldDestroy)
-            {
-                Destroy(bullets[i].gameObject);
-                bullets.RemoveAt(i);
-            }
         }
     }
 

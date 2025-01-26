@@ -21,7 +21,6 @@ public class EndPoint : MonoBehaviour
         }
     }
 
-
     public IEnumerator EndRoutine()
     {
         bg.DOColor(new Color(0, 0, 0, 1f), 0.4f);
