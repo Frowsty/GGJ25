@@ -19,10 +19,10 @@ public class HealthBar : MonoBehaviour, IPlayerComponent
 
         lineRendererHealth.positionCount = 2;
         lineRendererHealthBackground.positionCount = 2;
-        lineRendererHealth.SetPositions(new[] { new Vector3(player.position.x - offset, player.position.y + -(offset + 0.2f), 0),
-                                                new Vector3(player.position.x + offset, player.position.y + -(offset + 0.2f), 0) });
-        lineRendererHealthBackground.SetPositions(new[] { new Vector3(player.position.x - offset, player.position.y + -(offset + 0.2f), 0),
-                                                          new Vector3(player.position.x + offset, player.position.y + -(offset + 0.2f), 0) });
+        lineRendererHealth.SetPositions(new[] { new Vector3(player.position.x - offset, player.position.y + -(offset + 0.7f), 0),
+                                                new Vector3(player.position.x + offset, player.position.y + -(offset + 0.7f), 0) });
+        lineRendererHealthBackground.SetPositions(new[] { new Vector3(player.position.x - offset, player.position.y + -(offset + 0.7f), 0),
+                                                          new Vector3(player.position.x + offset, player.position.y + -(offset + 0.7f), 0) });
         
         lineRendererHealth.startWidth = 0.1f;
         lineRendererHealth.endWidth = 0.1f;
@@ -43,9 +43,9 @@ public class HealthBar : MonoBehaviour, IPlayerComponent
         float healthPercent = (float)PlayerStats.Instance.GetHealth() / (float)PlayerStats.Instance.GetMaxHealth();
         healthPercent = healthPercent < 0 ? 0 : healthPercent;
         
-        lineRendererHealth.SetPositions(new[] { new Vector3(player.position.x - offset, player.position.y + -(offset + 0.2f) , 0),
-                                                new Vector3(player.position.x - offset + (healthPercent * 2), player.position.y + -(offset + 0.2f), 0) });
-        lineRendererHealthBackground.SetPositions(new[] { new Vector3(player.position.x - offset, player.position.y + -(offset + 0.2f), 0),
-                                                          new Vector3(player.position.x + offset, player.position.y + -(offset + 0.2f), 0) });
+        lineRendererHealth.SetPositions(new[] { new Vector3(player.position.x - offset, player.position.y + -(offset + 0.7f) , 0),
+                                                new Vector3(player.position.x - offset + (healthPercent * 2), player.position.y + -(offset + 0.7f), 0) });
+        lineRendererHealthBackground.SetPositions(new[] { new Vector3(player.position.x - offset, player.position.y + -(offset + 0.7f), 0),
+                                                          new Vector3(player.position.x + offset, player.position.y + -(offset + 0.7f), 0) });
     }
 }

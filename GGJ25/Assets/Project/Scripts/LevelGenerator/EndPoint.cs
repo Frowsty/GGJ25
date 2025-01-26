@@ -24,13 +24,10 @@ public class EndPoint : MonoBehaviour
 
     public IEnumerator EndRoutine()
     {
-        float t=0f;
-        
         bg.DOColor(new Color(0, 0, 0, 1f), 0.4f);
         yield return new WaitForSeconds(0.4f);
         LevelGenerator.Instance.ResetAndIncrease();
         bg.DOColor(new Color(0, 0, 0, 0f), 0.4f);
-        
     }
     
     
