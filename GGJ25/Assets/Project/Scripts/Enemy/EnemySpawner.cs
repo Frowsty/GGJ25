@@ -11,7 +11,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private Enemy[] enemyPrefabs;
     [SerializeField]
-    private Shell shellPrefab; 
+    private Shell shellPrefab;
+    [SerializeField] 
+    private GameObject healthPrefab;
     
     public UnityEvent OnRoomClear;
     
@@ -43,6 +45,8 @@ public class EnemySpawner : MonoBehaviour
 
                 if (Random.value >= 0.45f)
                     Instantiate(shellPrefab, enemies[i].transform.position, Quaternion.identity);
+                if (Random.value >= 0.75f)
+                    Instantiate(healthPrefab, enemies[i].transform.position, Quaternion.identity);
                 Destroy(enemies[i].gameObject);
                 enemies.RemoveAt(i);
             }
