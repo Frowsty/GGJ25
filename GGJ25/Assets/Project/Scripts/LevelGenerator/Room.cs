@@ -12,6 +12,8 @@ public class Room : MonoBehaviour
     public bool hasSpawned = false;
     public bool isActive = false;
     
+    public List<Transform> spawnPoints = new ();
+    
     public List<Transform> GetPossibleDirections()
     {
         List<Transform> possibleDirections = new(directions);

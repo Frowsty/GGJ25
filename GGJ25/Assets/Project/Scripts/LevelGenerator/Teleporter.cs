@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
-using Microsoft.Win32.SafeHandles;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Teleporter : MonoBehaviour
 {
@@ -60,8 +60,14 @@ public class Teleporter : MonoBehaviour
             
             if (nextRoom != null && !nextRoom.hasSpawned && !nextRoom.gameObject.CompareTag("End"))
             {
-                foreach (var point in nextRoom.GetComponentsInChildren<SpawnPoint>())
-                    EnemySpawner.Instance.SpawnEnemy(point.transform.position);
+                List<Transform> spawnPoints = new (nextRoom.spawnPoints);
+                int enemyNumber = Random.Range(3, 7);
+                for (int i = 0; i < enemyNumber; i++)
+                {
+                    Transform point = spawnPoints[Random.Range(0, spawnPoints.Count)];
+                    EnemySpawner.Instance.SpawnEnemy(point.position);
+                    spawnPoints.Remove(point);
+                }
                 
                 nextRoom.hasSpawned = true;
             }

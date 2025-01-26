@@ -6,7 +6,7 @@ public class Menu : MonoBehaviour
 
     public GameObject SettingsUI;
     public GameObject StartMenuUI;
-
+    public GameObject CreditsUI;
 
     public void StartButton()
     {
@@ -19,16 +19,27 @@ public class Menu : MonoBehaviour
         SettingsUI.SetActive(true);
         
         StartMenuUI.SetActive(false);
+        
+        CreditsUI.SetActive(false);
     }
 
     public void DisableSettingsUI()
     {
         SettingsUI.SetActive(false);
 
-        StartMenuUI.SetActive(true );
+        StartMenuUI.SetActive(true);
+        
+        CreditsUI.SetActive(false);
     }
 
+    public void EnableCreditsUI()
+    {
+        SettingsUI.SetActive(false);
 
+        StartMenuUI.SetActive(false);
+        
+        CreditsUI.SetActive(true);
+    }
 
     public void QuitButton()
     {

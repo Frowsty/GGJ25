@@ -60,6 +60,7 @@ public class LevelGenerator : MonoBehaviour
                 room = Instantiate(possibleRooms[Random.Range(0, possibleRooms.Count)], Vector3.zero, Quaternion.identity);
                 rooms.Add(room.GetComponent<Room>());
                 _lastRoom = room.GetComponent<Room>();
+                room.GetComponent<Room>().hasSpawned = true;
             }
             Transform roomTransform = _lastRoom.GetRandomDirection();
             while (roomTransform == null)
