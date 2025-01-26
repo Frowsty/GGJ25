@@ -11,6 +11,8 @@ public class PauseState : State
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             GameManager.Instance.SwitchState<PlayingState>();
+        
+        Merchant.Instance.UpdateMerchantMenu();
     }
     public override void FixedUpdateState() {}
 

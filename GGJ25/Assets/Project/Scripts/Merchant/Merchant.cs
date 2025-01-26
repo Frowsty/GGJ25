@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,8 @@ public class Merchant : MonoBehaviour
     private Button chargeTimeUpgradeButton;
     private Button chargeRateUpgradeButton;
 
+    private TextMeshProUGUI shellCurrencyText;
+
     private Button closeMerchantButton;
 
     private Dictionary<string, float> costValues = new();
@@ -24,8 +27,6 @@ public class Merchant : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
-
-       
         
         healthUpgradeButton = GameObject.Find("UpgradeHealth").GetComponent<Button>();
         fireRateUpgradeButton = GameObject.Find("UpgradeFireRate").GetComponent<Button>();
@@ -33,6 +34,7 @@ public class Merchant : MonoBehaviour
         pierceUpgradeButton = GameObject.Find("UpgradePierce").GetComponent<Button>();
         chargeTimeUpgradeButton = GameObject.Find("UpgradeChargeTime").GetComponent<Button>();
         chargeRateUpgradeButton = GameObject.Find("UpgradeChargeRate").GetComponent<Button>();
+        shellCurrencyText = GameObject.Find("ShellCurrency").GetComponent<TextMeshProUGUI>();
         
         closeMerchantButton = GameObject.Find("CloseMerchant").GetComponent<Button>();
         
@@ -61,7 +63,7 @@ public class Merchant : MonoBehaviour
             {
                 PlayerStats.Instance.SetCurrency(PlayerStats.Instance.GetCurrency() - costValues["chargeRate"]);
                 PlayerStats.Instance.SetChargeRate(PlayerStats.Instance.GetChargeRate() + 0.5f);
-                costValues["chargeRate"] *= 2;
+                costValues["chargeRate"] *= 1.5f;
             }
         });
         
@@ -71,7 +73,7 @@ public class Merchant : MonoBehaviour
             {
                 PlayerStats.Instance.SetCurrency(PlayerStats.Instance.GetCurrency() - costValues["chargeTime"]);
                 PlayerStats.Instance.SetChargeTime(PlayerStats.Instance.GetChargeTime() + 0.2f);
-                costValues["chargeTime"] *= 2;
+                costValues["chargeTime"] *= 1.5f;
             }
         });
         
@@ -81,7 +83,7 @@ public class Merchant : MonoBehaviour
             {
                 PlayerStats.Instance.SetCurrency(PlayerStats.Instance.GetCurrency() - costValues["pierce"]);
                 PlayerStats.Instance.SetPierceRate(PlayerStats.Instance.GetPiercingRate() + 0.05f);
-                costValues["pierce"] *= 2;
+                costValues["pierce"] *= 1.5f;
             }
         });
         
@@ -91,7 +93,7 @@ public class Merchant : MonoBehaviour
             {
                 PlayerStats.Instance.SetCurrency(PlayerStats.Instance.GetCurrency() - costValues["damage"]);
                 PlayerStats.Instance.SetDamage(PlayerStats.Instance.GetDamage() * 1.5f);
-                costValues["damage"] *= 2;
+                costValues["damage"] *= 1.5f;
             }
         });
         
@@ -112,14 +114,27 @@ public class Merchant : MonoBehaviour
             {
                 PlayerStats.Instance.SetCurrency(PlayerStats.Instance.GetCurrency() - costValues["health"]);
                 PlayerStats.Instance.SetMaxHealth(PlayerStats.Instance.GetMaxHealth() + 5);
-                costValues["health"] *= 2;
+                costValues["health"] *= 1.5f;
             }
         });
     }
 
-    public void ShowMerchantMenu() => merchantMenu.SetActive(true);
-    public void HideMerchantMenu() => merchantMenu.SetActive(false);
-    
+    public void UpdateMerchantMenu()
+    {
+        shellCurrencyText.text = "Shells: " + PlayerStats.Instance.GetCurrency().ToString();
+    }
+
+    public void ShowMerchantMenu()
+    {
+        GameManager.Instance.SwitchState<PauseState>();
+        merchantMenu.SetActive(true);
+    }
+
+    public void HideMerchantMenu()
+    {
+        GameManager.Instance.SwitchState<PlayingState>();
+        merchantMenu.SetActive(false);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
