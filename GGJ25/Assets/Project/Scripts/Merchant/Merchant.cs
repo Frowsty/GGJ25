@@ -8,6 +8,7 @@ public class Merchant : MonoBehaviour
     public static Merchant Instance;
 
     public GameObject merchantMenu;
+    public GameObject tutorialMenu;
     private Button healthUpgradeButton;
     private Button fireRateUpgradeButton;
     private Button damageUpgradeButton;
@@ -39,6 +40,9 @@ public class Merchant : MonoBehaviour
         closeMerchantButton = GameObject.Find("CloseMerchant").GetComponent<Button>();
         
         merchantMenu.SetActive(false);
+        
+        GameManager.Instance.SwitchState<PauseState>();
+        
         
         // add base cost values
         costValues.Add("health", 2f);
@@ -135,6 +139,13 @@ public class Merchant : MonoBehaviour
         GameManager.Instance.SwitchState<PlayingState>();
         merchantMenu.SetActive(false);
     }
+
+    public void HideTutorialMenu()
+    {
+        GameManager.Instance.SwitchState<PlayingState>();
+        tutorialMenu.SetActive(false);
+    }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
